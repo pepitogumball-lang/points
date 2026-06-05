@@ -5,19 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
-
-export interface PointsResponse {
-  points: number;
-}
-
-export interface PointsInput {
-  points: number;
-}
 
 export interface ErrorResponse {
   error: string;
 }
-
