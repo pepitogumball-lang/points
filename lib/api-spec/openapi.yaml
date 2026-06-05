@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: points
+    description: Points operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,41 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /points:
+    get:
+      operationId: getPoints
+      tags: [points]
+      summary: Get current points
+      responses:
+        "200":
+          description: Current points value
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointsResponse"
+    post:
+      operationId: setPoints
+      tags: [points]
+      summary: Set points (admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PointsInput"
+      responses:
+        "200":
+          description: Updated points
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointsResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +70,24 @@ components:
           type: string
       required:
         - status
-
+    PointsResponse:
+      type: object
+      properties:
+        points:
+          type: integer
+      required:
+        - points
+    PointsInput:
+      type: object
+      properties:
+        points:
+          type: integer
+      required:
+        - points
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
