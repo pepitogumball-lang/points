@@ -25,7 +25,7 @@ app.use(
     },
   }),
 );
-app.use(cors());
+app.use(cors({ allowedHeaders: ["Content-Type", "X-Admin-Token"] }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -23,13 +23,15 @@ router.get("/points", async (req, res) => {
 });
 
 router.post("/points", async (req, res) => {
-  const adminToken = req.headers.cookie
+  const cookieToken = req.headers.cookie
     ?.split(";")
     .map((c) => c.trim())
     .find((c) => c.startsWith("admin_token="))
     ?.split("=")[1];
 
-  if (adminToken !== "Holaquetalsoypepi5") {
+  const headerToken = req.headers["x-admin-token"];
+
+  if (cookieToken !== "Holaquetalsoypepi5" && headerToken !== "Holaquetalsoypepi5") {
     return res.status(401).json({ error: "Unauthorized" });
   }
 

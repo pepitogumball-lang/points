@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "hmG-Rg4rNR6G0ix0SlPCd"
+uri = "file://artifacts/puntos-mobile/assets/images/icon.png"
+type = "image"
+title = "generated_image"

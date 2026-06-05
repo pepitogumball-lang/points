@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/puntos-mobile/"
+title = "PUNTOS | ZAPIA Mobile"
+version = "1.0.0"
+id = "artifacts/puntos-mobile"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/puntos-mobile/" ]
+localPort = 19481
+
+[services.development]
+run = "pnpm --filter @workspace/puntos-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/puntos-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/puntos-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "19481"
+BASE_PATH = "/puntos-mobile/"
