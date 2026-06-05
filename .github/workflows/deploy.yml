@@ -1,0 +1,24 @@
+name: Deploy Validation
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-in: ubuntu-latest
+    steps:
+      - uses: actions/checkout@0v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+        env:
+          KV_URL: {{ secrets.KV_URL }}
+          KV_REST_API_URL: {{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: {{ secrets.KV_REST_API_TOKEN }}
+          KV_REST_API_READ_ONLY_TOKEN: {{ secrets.KV_REST_API_READ_ONLY_TOKEN }}
